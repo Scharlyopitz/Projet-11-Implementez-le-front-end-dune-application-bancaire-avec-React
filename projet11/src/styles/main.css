@@ -289,3 +289,31 @@ body {
         width: 200px;
     }
 }
+
+/* ERROR PAGE */
+
+.error {
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.error h1 {
+    font-size: 100px;
+}
+
+.error p {
+    font-size: 25px;
+}
+
+@media (min-width: 920px) {
+    .error h1 {
+        font-size: 180px;
+    }
+    .error p {
+        font-size: 30px;
+    }
+}

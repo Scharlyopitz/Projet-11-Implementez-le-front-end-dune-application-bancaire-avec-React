@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 
 export default function SignIn() {
     return (
@@ -21,9 +21,9 @@ export default function SignIn() {
                             <label htmlFor="remember-me">Remember me</label>
                         </div>
                         {/* <!-- PLACEHOLDER DUE TO STATIC SITE --> */}
-                        <NavLink to="/user" className="sign-in-button">
+                        {/* <a href="./user.html" class="sign-in-button">
                             Sign In
-                        </NavLink>
+                        </a> */}
                         {/* <!-- SHOULD BE THE BUTTON BELOW --> */}
                         <button className="sign-in-button">Sign In</button>
                         {/* <!--  --> */}
