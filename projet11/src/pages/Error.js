@@ -3,7 +3,7 @@ export default function Error() {
         <main>
             <section className="error">
                 <h1>404</h1>
-                <p>Oups... 🙊 Page not found</p>
+                <p>Error 404 Page not found</p>
             </section>
         </main>
     );

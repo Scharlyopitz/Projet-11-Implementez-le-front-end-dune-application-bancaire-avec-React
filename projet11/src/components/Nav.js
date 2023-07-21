@@ -1,8 +1,26 @@
 import BankLogo from "../assets/argentBankLogo.png";
-import { useLocation } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+
+import { useSelector } from "react-redux";
+import { selectUser } from "../Redux/userSlice";
+import { useDispatch } from "react-redux";
+import { logout } from "../Redux/userSlice";
 
 export default function Nav() {
+    const user = useSelector(selectUser);
+
+    const dispatch = useDispatch();
+
+    let navigate = useNavigate();
+
+    const handleLogOut = (e) => {
+        e.preventDefault();
+        navigate("/");
+
+        dispatch(logout());
+    };
+
     // information de l'URL de la page
     // const location = useLocation();
 
@@ -35,12 +53,26 @@ export default function Nav() {
                 />
                 <h1 className="sr-only">Argent Bank</h1>
             </NavLink>
-            <div>
-                <NavLink className="main-nav-item" to="/sign-in">
-                    <i className="fa fa-user-circle"></i>
-                    SignIn
-                </NavLink>
-            </div>
+
+            {user ? (
+                <div>
+                    <NavLink className="main-nav-item" to="/user">
+                        <i className="fa fa-user-circle"></i>
+                        Tony
+                    </NavLink>
+                    <NavLink onClick={handleLogOut} className="main-nav-item">
+                        <i className="fa fa-sign-out"></i>
+                        Sign Out
+                    </NavLink>
+                </div>
+            ) : (
+                <div>
+                    <NavLink className="main-nav-item" to="/sign-in">
+                        <i className="fa fa-user-circle"></i>
+                        SignIn
+                    </NavLink>
+                </div>
+            )}
         </nav>
     );
 }
