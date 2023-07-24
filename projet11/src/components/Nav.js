@@ -55,20 +55,18 @@ export default function Nav() {
             </NavLink>
 
             {user ? (
-                <div>
+                <div className="user-nav">
                     <NavLink className="main-nav-item" to="/user">
                         <i className="fa fa-user-circle"></i>
                         Tony
                     </NavLink>
                     <NavLink onClick={handleLogOut} className="main-nav-item">
-                        <i className="fa fa-sign-out"></i>
-                        Sign Out
+                        <i class="fa-solid fa-power-off"></i>
                     </NavLink>
                 </div>
             ) : (
                 <div>
                     <NavLink className="main-nav-item" to="/sign-in">
-                        <i className="fa fa-user-circle"></i>
                         SignIn
                     </NavLink>
                 </div>

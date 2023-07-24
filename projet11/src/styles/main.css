@@ -317,3 +317,17 @@ body {
         font-size: 30px;
     }
 }
+
+/* LOGOUT STYLE BUTTON  */
+
+.fa-power-off:before {
+    content: "\f011";
+    font-family: "Font Awesome 5 Free";
+    font-style: initial;
+    font-size: 20px;
+}
+
+.user-nav {
+    display: flex;
+    align-items: center;
+}
