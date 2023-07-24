@@ -61,7 +61,7 @@ export default function Nav() {
                         Tony
                     </NavLink>
                     <NavLink onClick={handleLogOut} className="main-nav-item">
-                        <i class="fa-solid fa-power-off"></i>
+                        <i className="fa-solid fa-power-off"></i>
                     </NavLink>
                 </div>
             ) : (
