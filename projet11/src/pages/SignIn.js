@@ -1,12 +1,15 @@
 // import { NavLink } from "react-router-dom";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { login } from "../Redux/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+
 import { useNavigate } from "react-router";
+import { loginUser } from "../Redux/logIn";
 
 export default function SignIn() {
-    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    const { loading, error } = useSelector((state) => state.user);
 
     const dispatch = useDispatch();
 
@@ -14,15 +17,18 @@ export default function SignIn() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        navigate("/user");
 
-        dispatch(
-            login({
-                name: username,
-                password: password,
-                loggedIn: true,
-            })
-        );
+        let userInformations = {
+            email,
+            password,
+        };
+        dispatch(loginUser(userInformations)).then((result) => {
+            if (result.payload) {
+                setEmail("");
+                setPassword("");
+                navigate("/user");
+            }
+        });
     };
 
     return (
@@ -30,14 +36,14 @@ export default function SignIn() {
             <section className="sign-in-content">
                 <i className="fa fa-user-circle sign-in-icon"></i>
                 <h1>Sign In</h1>
-                <form onSubmit={(e) => handleSubmit(e)}>
+                <form onSubmit={handleSubmit}>
                     <div className="input-wrapper">
-                        <label htmlFor="username">Username</label>
+                        <label htmlFor="email">email</label>
                         <input
                             type="text"
-                            id="username"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
+                            id="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                         />
                     </div>
                     <div className="input-wrapper">
@@ -58,7 +64,10 @@ export default function SignIn() {
                             Sign In
                         </a> */}
                     {/* <!-- SHOULD BE THE BUTTON BELOW --> */}
-                    <button className="sign-in-button">Sign In</button>
+                    <button className="sign-in-button">
+                        {loading ? "Loading...." : "Sign In"}
+                    </button>
+                    {error && <div className="alert-user">{error}</div>}
                     {/* <!--  --> */}
                 </form>
             </section>

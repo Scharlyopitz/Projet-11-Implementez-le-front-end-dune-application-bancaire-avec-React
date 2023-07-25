@@ -331,3 +331,13 @@ body {
     display: flex;
     align-items: center;
 }
+
+/* MESSAGE ERREUR D'AUTHENTIFICATION */
+
+.alert-user {
+    background: #ff000078;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-top: 20px;
+    color: #a92121;
+}
