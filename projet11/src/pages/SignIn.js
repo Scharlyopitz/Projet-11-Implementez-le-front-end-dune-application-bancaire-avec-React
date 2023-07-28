@@ -1,19 +1,17 @@
-// import { NavLink } from "react-router-dom";
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-
 import { useNavigate } from "react-router";
+
+import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../Redux/logIn";
 
 export default function SignIn() {
+    const dispatch = useDispatch();
+    let navigate = useNavigate();
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const { loading, error } = useSelector((state) => state.user);
-
-    const dispatch = useDispatch();
-
-    let navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -24,8 +22,6 @@ export default function SignIn() {
         };
         dispatch(loginUser(userInformations)).then((result) => {
             if (result.payload) {
-                setEmail("");
-                setPassword("");
                 navigate("/user");
             }
         });

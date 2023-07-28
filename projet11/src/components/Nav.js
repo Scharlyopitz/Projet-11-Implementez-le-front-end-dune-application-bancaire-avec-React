@@ -1,10 +1,19 @@
 import BankLogo from "../assets/argentBankLogo.png";
 import { NavLink, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+
+import { getToken } from "../Redux/callerService";
+import { userProfile } from "../Redux/UserProfile";
 
 export default function Nav() {
-    const token = localStorage.getItem("user");
-    const tokenParse = JSON.parse(token);
-    const userAuth = tokenParse?.body.token;
+    const [userInformations, setuserInformations] = useState();
+
+    useEffect(() => {
+        userProfile
+            .getUser()
+            .then((res) => setuserInformations(res.data))
+            .catch((err) => console.log(err));
+    }, []);
 
     let navigate = useNavigate();
 
@@ -25,11 +34,11 @@ export default function Nav() {
                 <h1 className="sr-only">Argent Bank</h1>
             </NavLink>
 
-            {userAuth ? (
+            {getToken ? (
                 <div className="user-nav">
                     <NavLink className="main-nav-item" to="/user">
                         <i className="fa fa-user-circle"></i>
-                        Tony
+                        {userInformations?.body.userName}
                     </NavLink>
                     <NavLink onClick={handleLogOut} className="main-nav-item">
                         <i className="fa-solid fa-power-off"></i>

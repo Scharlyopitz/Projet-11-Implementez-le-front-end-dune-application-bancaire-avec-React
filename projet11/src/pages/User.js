@@ -1,4 +1,16 @@
+import { userProfile } from "../Redux/UserProfile";
+import { useEffect, useState } from "react";
+
 export default function User() {
+    const [userInformations, setuserInformations] = useState();
+
+    useEffect(() => {
+        userProfile
+            .getUser()
+            .then((res) => setuserInformations(res.data))
+            .catch((err) => console.log(err));
+    }, []);
+
     return (
         <>
             <main className="main bg-dark">
@@ -6,7 +18,8 @@ export default function User() {
                     <h1>
                         Welcome back
                         <br />
-                        Tony Jarvis!
+                        {userInformations?.body.firstName}{" "}
+                        {userInformations?.body.lastName}
                     </h1>
                     <button className="edit-button">Edit Name</button>
                 </div>
