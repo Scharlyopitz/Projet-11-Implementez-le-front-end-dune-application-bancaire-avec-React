@@ -1,16 +1,4 @@
-import { userProfile } from "../Redux/UserProfile";
-import { useEffect, useState } from "react";
-
-export default function User() {
-    const [userInformations, setuserInformations] = useState();
-
-    useEffect(() => {
-        userProfile
-            .getUser()
-            .then((res) => setuserInformations(res.data))
-            .catch((err) => console.log(err));
-    }, []);
-
+export default function User({ userInformations }) {
     return (
         <>
             <main className="main bg-dark">
