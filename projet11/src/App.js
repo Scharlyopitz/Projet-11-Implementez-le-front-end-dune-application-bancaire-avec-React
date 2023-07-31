@@ -4,24 +4,26 @@ import Home from "./pages/Home";
 import SignIn from "./pages/SignIn";
 import User from "./pages/User";
 import Error from "./pages/Error";
+import Auth from "./components/Auth";
 
 import "./styles/main.css";
 
 import { Route, Routes } from "react-router";
-
 import { useEffect, useState } from "react";
 
 import { userProfile } from "./Redux/UserProfile";
-import Auth from "./components/Auth";
+import { getToken } from "./Redux/callerService";
 
 function App() {
     const [userInformations, setuserInformations] = useState();
 
     useEffect(() => {
-        userProfile
-            .getUser()
-            .then((res) => setuserInformations(res.data))
-            .catch((err) => console.log(err));
+        if (getToken) {
+            userProfile
+                .getUser()
+                .then((res) => setuserInformations(res.data))
+                .catch((err) => console.log(err));
+        }
     }, []);
 
     return (
