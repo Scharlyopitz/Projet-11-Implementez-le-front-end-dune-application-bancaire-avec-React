@@ -12,10 +12,14 @@ import { Route, Routes } from "react-router";
 import { useEffect, useState } from "react";
 
 import { userProfile } from "./Redux/UserProfile";
-import { getToken } from "./Redux/callerService";
+// import { getToken } from "./Redux/callerService";
 
 function App() {
     const [userInformations, setuserInformations] = useState();
+
+    // CODE REPETER!!!!!!!!!!!
+    const token = JSON.parse(localStorage.getItem("user"));
+    const getToken = token?.body?.token;
 
     useEffect(() => {
         if (getToken) {
@@ -24,7 +28,7 @@ function App() {
                 .then((res) => setuserInformations(res.data))
                 .catch((err) => console.log(err));
         }
-    }, []);
+    }, [getToken]);
 
     return (
         <>

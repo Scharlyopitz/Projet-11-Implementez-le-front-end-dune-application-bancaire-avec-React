@@ -5,9 +5,9 @@ const Axios = axios.create({
 });
 
 // Intercepteur token
-const token = localStorage.getItem("user");
-const tokenParse = JSON.parse(token);
-export const getToken = tokenParse?.body?.token;
+
+const token = JSON.parse(localStorage.getItem("user"));
+const getToken = token?.body?.token;
 
 Axios.interceptors.request.use((request) => {
     request.headers.Authorization = `Bearer ${getToken}`;

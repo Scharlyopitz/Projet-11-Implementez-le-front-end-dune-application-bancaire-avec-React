@@ -1,9 +1,13 @@
 import BankLogo from "../assets/argentBankLogo.png";
 import { NavLink, useNavigate } from "react-router-dom";
 
-import { getToken } from "../Redux/callerService";
+// import { getToken } from "../Redux/callerService";
 
 export default function Nav({ userInformations }) {
+    // CODE REPETER!!!!!!!!!!!
+    const token = JSON.parse(localStorage.getItem("user"));
+    const getToken = token?.body?.token;
+
     let navigate = useNavigate();
 
     const handleLogOut = (e) => {
