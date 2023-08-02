@@ -3,9 +3,9 @@ import { Navigate } from "react-router";
 
 export default function Auth({ children }) {
     // CODE REPETER!!!!!!!!!!!
-    const token = JSON.parse(localStorage.getItem("user"));
-    const getToken = token?.body?.token;
-    if (getToken) {
+    const token = JSON.parse(localStorage.getItem("token"));
+
+    if (token) {
         return children;
     }
 

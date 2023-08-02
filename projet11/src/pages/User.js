@@ -1,16 +1,39 @@
+import { useState } from "react";
+import Edit from "../components/Edit";
+
 export default function User({ userInformations }) {
+    const [edit, setEdit] = useState(false);
+
+    const handleEditOn = () => {
+        setEdit(true);
+    };
+
+    const handleEditOff = (e) => {
+        e.preventDefault();
+        setEdit(false);
+    };
+
     return (
         <>
             <main className="main bg-dark">
-                <div className="header">
-                    <h1>
-                        Welcome back
-                        <br />
-                        {userInformations?.body.firstName}{" "}
-                        {userInformations?.body.lastName}
-                    </h1>
-                    <button className="edit-button">Edit Name</button>
-                </div>
+                {edit ? (
+                    <Edit
+                        userInformations={userInformations}
+                        handleEditOff={handleEditOff}
+                    />
+                ) : (
+                    <div className="header">
+                        <h1>
+                            Welcome back
+                            <br />
+                            {userInformations?.body.firstName}{" "}
+                            {userInformations?.body.lastName}
+                        </h1>
+                        <button className="edit-button" onClick={handleEditOn}>
+                            Edit Name
+                        </button>
+                    </div>
+                )}
                 <h2 className="sr-only">Accounts</h2>
                 <section className="account">
                     <div className="account-content-wrapper">

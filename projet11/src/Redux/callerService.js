@@ -1,17 +1,16 @@
-import axios from "axios";
+// import axios from "axios";
 
-const Axios = axios.create({
-    baseURL: "http://localhost:3001/api/v1/user/profile",
-});
+// const Axios = axios.create({
+//     baseURL: "http://localhost:3001/api/v1/user/profile",
+// });
 
-// Intercepteur token
+// // Intercepteur token
 
-const token = JSON.parse(localStorage.getItem("user"));
-const getToken = token?.body?.token;
+// const token = JSON.parse(localStorage.getItem("token"));
 
-Axios.interceptors.request.use((request) => {
-    request.headers.Authorization = `Bearer ${getToken}`;
-    return request;
-});
+// Axios.interceptors.request.use((request) => {
+//     request.headers.Authorization = `Bearer ${token}`;
+//     return request;
+// });
 
-export default Axios;
+// export default Axios;

@@ -5,14 +5,13 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 export default function Nav({ userInformations }) {
     // CODE REPETER!!!!!!!!!!!
-    const token = JSON.parse(localStorage.getItem("user"));
-    const getToken = token?.body?.token;
+    const token = JSON.parse(localStorage.getItem("token"));
 
     let navigate = useNavigate();
 
     const handleLogOut = (e) => {
         e.preventDefault();
-        localStorage.removeItem("user");
+        localStorage.removeItem("token");
         navigate("/");
     };
 
@@ -27,7 +26,7 @@ export default function Nav({ userInformations }) {
                 <h1 className="sr-only">Argent Bank</h1>
             </NavLink>
 
-            {getToken ? (
+            {token ? (
                 <div className="user-nav">
                     <NavLink className="main-nav-item" to="/user">
                         <i className="fa fa-user-circle"></i>

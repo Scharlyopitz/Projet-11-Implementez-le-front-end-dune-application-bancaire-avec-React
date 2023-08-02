@@ -12,23 +12,39 @@ import { Route, Routes } from "react-router";
 import { useEffect, useState } from "react";
 
 import { userProfile } from "./Redux/UserProfile";
+import axios, { AxiosHeaders } from "axios";
 // import { getToken } from "./Redux/callerService";
 
 function App() {
     const [userInformations, setuserInformations] = useState();
-
+    console.log(userInformations);
     // CODE REPETER!!!!!!!!!!!
-    const token = JSON.parse(localStorage.getItem("user"));
-    const getToken = token?.body?.token;
+    const token = JSON.parse(localStorage.getItem("token"));
 
     useEffect(() => {
-        if (getToken) {
-            userProfile
-                .getUser()
-                .then((res) => setuserInformations(res.data))
-                .catch((err) => console.log(err));
+        if (token) {
+            axios
+                .post(
+                    "http://localhost:3001/api/v1/user/profile",
+                    axios.interceptors.request.use((request) => {
+                        request.headers.Authorization = `Bearer ${token}`;
+                        return request;
+                    })
+                )
+                .then((res) => {
+                    console.log(res);
+                    setuserInformations(res.data);
+                })
+                .catch((error) => console.log(error));
         }
-    }, [getToken]);
+    }, []);
+
+    // userProfile
+    //             .getUser()
+    //             .then((res) => {
+    //                 setuserInformations(res.data);
+    //             })
+    //             .catch((err) => console.log(err));
 
     return (
         <>
