@@ -1,11 +1,8 @@
 import { Navigate } from "react-router";
-// import { getToken } from "../Redux/callerService";
+import { accountService } from "../Redux/accounterService";
 
 export default function Auth({ children }) {
-    // CODE REPETER!!!!!!!!!!!
-    const token = JSON.parse(localStorage.getItem("token"));
-
-    if (token) {
+    if (accountService.isLoggedIn()) {
         return children;
     }
 

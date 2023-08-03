@@ -21,7 +21,7 @@ export default function SignIn() {
             password,
         };
         dispatch(loginUser(userInformations)).then((result) => {
-            if (result.payload) {
+            if (result.meta.requestStatus === "fulfilled") {
                 navigate("/user");
             }
         });

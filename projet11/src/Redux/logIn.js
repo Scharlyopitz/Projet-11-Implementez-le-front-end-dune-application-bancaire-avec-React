@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import axios from "axios";
+import { accountService } from "./accounterService";
 
 export const loginUser = createAsyncThunk(
     "user,loginUser",
@@ -10,9 +11,7 @@ export const loginUser = createAsyncThunk(
             userInformations
         );
         const response = await request.data.body.token;
-
-        localStorage.setItem("token", JSON.stringify(response));
-
+        accountService.saveToken(response);
         return response;
     }
 );

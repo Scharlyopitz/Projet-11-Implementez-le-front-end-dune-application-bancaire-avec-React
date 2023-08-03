@@ -1,6 +1,39 @@
+import { useState } from "react";
+
+import { accountService } from "../Redux/accounterService";
+
 export default function Edit({ userInformations, handleEditOff }) {
-    const save = (e) => {
+    // CODE REPETER!!!!!!!!!!! ------------------------------------
+
+    const token = accountService.token();
+
+    // ------------------------------------------------------------
+
+    const [username, setUsername] = useState("");
+
+    const save = async (e) => {
         e.preventDefault();
+
+        if (username !== "") {
+            try {
+                const res = await fetch(
+                    "http://localhost:3001/api/v1/user/profile",
+                    {
+                        method: "PUT",
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${token}`,
+                        },
+                        body: JSON.stringify({ userName: username }),
+                    }
+                );
+
+                console.log(res);
+            } catch (error) {
+                console.log(error);
+            }
+            handleEditOff();
+        }
     };
 
     return (
@@ -12,6 +45,7 @@ export default function Edit({ userInformations, handleEditOff }) {
                     <input
                         type="text"
                         id="username"
+                        onChange={(e) => setUsername(e.target.value)}
                         placeholder={userInformations?.body.userName}
                     />
                 </div>

@@ -1,15 +1,43 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Edit from "../components/Edit";
+import axios from "axios";
 
-export default function User({ userInformations }) {
+import { accountService } from "../Redux/accounterService";
+
+export default function User() {
+    // CODE REPETER!!!!!!!!!!! ------------------------------------
+    const [userInformations, setuserInformations] = useState();
+
+    const token = accountService.token();
+
+    const isLogged = accountService.isLoggedIn();
+
+    useEffect(() => {
+        if (isLogged) {
+            axios
+                .post(
+                    "http://localhost:3001/api/v1/user/profile",
+                    axios.interceptors.request.use((request) => {
+                        request.headers.Authorization = `Bearer ${token}`;
+                        return request;
+                    })
+                )
+                .then((res) => {
+                    console.log(res);
+                    setuserInformations(res.data);
+                })
+                .catch((error) => console.log(error));
+        }
+    }, [isLogged, token]);
+
+    // -------------------------------------------------------------
     const [edit, setEdit] = useState(false);
 
     const handleEditOn = () => {
         setEdit(true);
     };
 
-    const handleEditOff = (e) => {
-        e.preventDefault();
+    const handleEditOff = () => {
         setEdit(false);
     };
 

@@ -367,8 +367,8 @@ body {
 }
 
 .edit-profile-button {
-    padding: 0px 37%;
     display: flex;
+    justify-content: center;
     margin: 20px 0;
 }
 .edit-profile-button button {

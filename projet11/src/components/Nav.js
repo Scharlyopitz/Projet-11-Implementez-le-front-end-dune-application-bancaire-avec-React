@@ -1,11 +1,38 @@
 import BankLogo from "../assets/argentBankLogo.png";
 import { NavLink, useNavigate } from "react-router-dom";
 
-// import { getToken } from "../Redux/callerService";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-export default function Nav({ userInformations }) {
-    // CODE REPETER!!!!!!!!!!!
-    const token = JSON.parse(localStorage.getItem("token"));
+import { accountService } from "../Redux/accounterService";
+
+export default function Nav() {
+    // CODE REPETER!!!!!!!!!!! ------------------------------------
+    const [userInformations, setuserInformations] = useState();
+
+    const token = accountService.token();
+
+    const isLogged = accountService.isLoggedIn();
+
+    useEffect(() => {
+        if (isLogged) {
+            axios
+                .post(
+                    "http://localhost:3001/api/v1/user/profile",
+                    axios.interceptors.request.use((request) => {
+                        request.headers.Authorization = `Bearer ${token}`;
+                        return request;
+                    })
+                )
+                .then((res) => {
+                    console.log(res);
+                    setuserInformations(res.data);
+                })
+                .catch((error) => console.log(error));
+        }
+    }, [isLogged, token]);
+
+    // -------------------------------------------------------------
 
     let navigate = useNavigate();
 
