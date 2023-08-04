@@ -39,7 +39,8 @@ export default function User() {
         setEdit(true);
     };
 
-    const handleEditOff = () => {
+    const handleEditOff = (e) => {
+        e.preventDefault();
         setEdit(false);
     };
 

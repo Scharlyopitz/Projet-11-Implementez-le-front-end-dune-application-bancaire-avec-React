@@ -32,14 +32,14 @@ export default function Edit({ userInformations, handleEditOff }) {
             } catch (error) {
                 console.log(error);
             }
-            handleEditOff();
+            handleEditOff(e);
         }
     };
 
     return (
         <div className="edit-profile">
             <h2>Edit user info</h2>
-            <form>
+            <form onSubmit={save}>
                 <div>
                     <label htmlFor="username">User name:</label>
                     <input
@@ -69,7 +69,7 @@ export default function Edit({ userInformations, handleEditOff }) {
                 </div>
 
                 <div className="edit-profile-button">
-                    <button onClick={save}>Save</button>
+                    <button>Save</button>
                     <button onClick={handleEditOff}>Cancel</button>
                 </div>
             </form>
