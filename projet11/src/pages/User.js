@@ -86,7 +86,6 @@ export default function User() {
                         balance: "Current Balance",
                     }}
                 />
-                money:""
             </main>
         </>
     );
