@@ -1,5 +1,5 @@
 import { Navigate } from "react-router";
-import { accountService } from "../Redux/accounterService";
+import { accountService } from "./accounterService";
 
 export default function Auth({ children }) {
     if (accountService.isLoggedIn()) {

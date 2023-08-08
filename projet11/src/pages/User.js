@@ -4,7 +4,7 @@ import Transaction from "../components/Transaction";
 
 import axios from "axios";
 
-import { accountService } from "../Redux/accounterService";
+import { accountService } from "../components/accounterService";
 
 export default function User() {
     // CODE REPETER!!!!!!!!!!! ------------------------------------

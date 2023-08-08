@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-import { accountService } from "../Redux/accounterService";
+import { accountService } from "./accounterService";
 
 export default function Nav() {
     // CODE REPETER!!!!!!!!!!! ------------------------------------

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { accountService } from "../Redux/accounterService";
+import { accountService } from "./accounterService";
 
 export default function Edit({ userInformations, handleEditOff }) {
     // CODE REPETER!!!!!!!!!!! ------------------------------------
