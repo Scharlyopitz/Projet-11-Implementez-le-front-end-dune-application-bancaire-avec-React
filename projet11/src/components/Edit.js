@@ -6,12 +6,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { setNewUsername } from "../Redux/UserInfo";
 
 export default function Edit({ handleEditOff }) {
-    const userName = useSelector((state) => state.UserInfo.username);
+    const dispatch = useDispatch();
+
     const userInformations = useSelector((state) => state.UserInfo);
 
     const token = accountService.token();
-
-    const dispatch = useDispatch();
 
     const [getUsername, setGetUsername] = useState("");
 
@@ -51,7 +50,7 @@ export default function Edit({ handleEditOff }) {
                         type="text"
                         id="username"
                         onChange={(e) => setGetUsername(e.target.value)}
-                        placeholder={userName}
+                        placeholder={userInformations?.username}
                     />
                 </div>
                 <div>
