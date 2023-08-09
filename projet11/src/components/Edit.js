@@ -2,19 +2,23 @@ import { useState } from "react";
 
 import { accountService } from "./accounterService";
 
-export default function Edit({ userInformations, handleEditOff }) {
-    // CODE REPETER!!!!!!!!!!! ------------------------------------
+import { useDispatch, useSelector } from "react-redux";
+import { setNewUsername } from "../Redux/UserInfo";
+
+export default function Edit({ handleEditOff }) {
+    const userName = useSelector((state) => state.UserInfo.username);
+    const userInformations = useSelector((state) => state.UserInfo);
 
     const token = accountService.token();
 
-    // ------------------------------------------------------------
+    const dispatch = useDispatch();
 
-    const [username, setUsername] = useState("");
+    const [getUsername, setGetUsername] = useState("");
 
     const save = async (e) => {
         e.preventDefault();
 
-        if (username !== "") {
+        if (getUsername !== "") {
             try {
                 const res = await fetch(
                     "http://localhost:3001/api/v1/user/profile",
@@ -24,9 +28,10 @@ export default function Edit({ userInformations, handleEditOff }) {
                             "Content-Type": "application/json",
                             Authorization: `Bearer ${token}`,
                         },
-                        body: JSON.stringify({ userName: username }),
+                        body: JSON.stringify({ userName: getUsername }),
                     }
                 );
+                dispatch(setNewUsername({ getUsername }));
 
                 console.log(res);
             } catch (error) {
@@ -45,8 +50,8 @@ export default function Edit({ userInformations, handleEditOff }) {
                     <input
                         type="text"
                         id="username"
-                        onChange={(e) => setUsername(e.target.value)}
-                        placeholder={userInformations?.body.userName}
+                        onChange={(e) => setGetUsername(e.target.value)}
+                        placeholder={userName}
                     />
                 </div>
                 <div>
@@ -54,7 +59,7 @@ export default function Edit({ userInformations, handleEditOff }) {
                     <input
                         type="text"
                         id="firstname"
-                        placeholder={userInformations?.body.firstName}
+                        placeholder={userInformations?.firstname}
                         disabled
                     />
                 </div>
@@ -63,7 +68,7 @@ export default function Edit({ userInformations, handleEditOff }) {
                     <input
                         type="text"
                         id="lastname"
-                        placeholder={userInformations?.body.lastName}
+                        placeholder={userInformations?.lastname}
                         disabled
                     />
                 </div>

@@ -6,9 +6,13 @@ import axios from "axios";
 
 import { accountService } from "../components/accounterService";
 
+import { useDispatch, useSelector } from "react-redux";
+import { setGetprofil } from "../Redux/UserInfo";
+
 export default function User() {
-    // CODE REPETER!!!!!!!!!!! ------------------------------------
-    const [userInformations, setuserInformations] = useState();
+    const dispatch = useDispatch();
+
+    const userInformations = useSelector((state) => state.UserInfo);
 
     const token = accountService.token();
 
@@ -26,13 +30,12 @@ export default function User() {
                 )
                 .then((res) => {
                     console.log(res);
-                    setuserInformations(res.data);
+                    dispatch(setGetprofil(res.data.body));
                 })
                 .catch((error) => console.log(error));
         }
-    }, [isLogged, token]);
+    }, [isLogged, token, dispatch]);
 
-    // -------------------------------------------------------------
     const [edit, setEdit] = useState(false);
 
     const handleEditOn = () => {
@@ -48,17 +51,14 @@ export default function User() {
         <>
             <main className="main bg-dark">
                 {edit ? (
-                    <Edit
-                        userInformations={userInformations}
-                        handleEditOff={handleEditOff}
-                    />
+                    <Edit handleEditOff={handleEditOff} />
                 ) : (
                     <div className="header">
                         <h1>
                             Welcome back
                             <br />
-                            {userInformations?.body.firstName}{" "}
-                            {userInformations?.body.lastName}
+                            {userInformations?.firstname}{" "}
+                            {userInformations?.lastname}
                         </h1>
                         <button className="edit-button" onClick={handleEditOn}>
                             Edit Name

@@ -1,38 +1,14 @@
 import BankLogo from "../assets/argentBankLogo.png";
 import { NavLink, useNavigate } from "react-router-dom";
 
-import { useState, useEffect } from "react";
-import axios from "axios";
-
 import { accountService } from "./accounterService";
 
+import { useSelector } from "react-redux";
+
 export default function Nav() {
-    // CODE REPETER!!!!!!!!!!! ------------------------------------
-    const [userInformations, setuserInformations] = useState();
+    const userName = useSelector((state) => state.UserInfo.username);
 
     const token = accountService.token();
-
-    const isLogged = accountService.isLoggedIn();
-
-    useEffect(() => {
-        if (isLogged) {
-            axios
-                .post(
-                    "http://localhost:3001/api/v1/user/profile",
-                    axios.interceptors.request.use((request) => {
-                        request.headers.Authorization = `Bearer ${token}`;
-                        return request;
-                    })
-                )
-                .then((res) => {
-                    console.log(res);
-                    setuserInformations(res.data);
-                })
-                .catch((error) => console.log(error));
-        }
-    }, [isLogged, token]);
-
-    // -------------------------------------------------------------
 
     let navigate = useNavigate();
 
@@ -57,7 +33,7 @@ export default function Nav() {
                 <div className="user-nav">
                     <NavLink className="main-nav-item" to="/user">
                         <i className="fa fa-user-circle"></i>
-                        {userInformations?.body.userName}
+                        {userName}
                     </NavLink>
                     <NavLink onClick={handleLogOut} className="main-nav-item">
                         <i className="fa-solid fa-power-off"></i>
