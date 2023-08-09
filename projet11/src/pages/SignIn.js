@@ -55,16 +55,11 @@ export default function SignIn() {
                         <input type="checkbox" id="remember-me" />
                         <label htmlFor="remember-me">Remember me</label>
                     </div>
-                    {/* <!-- PLACEHOLDER DUE TO STATIC SITE --> */}
-                    {/* <a href="./user.html" class="sign-in-button">
-                            Sign In
-                        </a> */}
-                    {/* <!-- SHOULD BE THE BUTTON BELOW --> */}
+
                     <button className="sign-in-button">
                         {loading ? "Loading...." : "Sign In"}
                     </button>
                     {error && <div className="alert-user">{error}</div>}
-                    {/* <!--  --> */}
                 </form>
             </section>
         </main>
