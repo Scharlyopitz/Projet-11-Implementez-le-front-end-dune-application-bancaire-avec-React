@@ -9,7 +9,13 @@ const userInfo = createSlice({
         lastname: "",
     },
     reducers: {
-        setGetprofil: (state, action) => {
+        resetProfile: (state) => {
+            state.username = "";
+            state.email = "";
+            state.firstname = "";
+            state.lastname = "";
+        },
+        getProfile: (state, action) => {
             state.username = action.payload.userName;
             state.email = action.payload.email;
             state.firstname = action.payload.firstName;
@@ -21,6 +27,6 @@ const userInfo = createSlice({
     },
 });
 
-export const { setNewUsername, setGetprofil } = userInfo.actions;
+export const { setNewUsername, getProfile, resetProfile } = userInfo.actions;
 
 export default userInfo.reducer;

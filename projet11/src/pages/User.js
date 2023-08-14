@@ -8,7 +8,7 @@ import axios from "axios";
 import { accountService } from "../components/accounterService";
 
 import { useDispatch, useSelector } from "react-redux";
-import { setGetprofil } from "../Redux/UserInfo";
+import { getProfile } from "../Redux/UserInfo";
 
 export default function User() {
     const dispatch = useDispatch();
@@ -31,7 +31,7 @@ export default function User() {
                 )
                 .then((res) => {
                     console.log(res);
-                    dispatch(setGetprofil(res.data.body));
+                    dispatch(getProfile(res.data.body));
                 })
                 .catch((error) => console.log(error));
         }

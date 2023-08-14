@@ -4,9 +4,13 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 import { accountService } from "./accounterService";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { resetToken } from "../Redux/logIn";
+import { resetProfile } from "../Redux/UserInfo";
 
 export default function Nav() {
+    const dispatch = useDispatch();
+
     const userName = useSelector((state) => state.UserInfo.username);
 
     const token = accountService.token();
@@ -15,6 +19,8 @@ export default function Nav() {
 
     const handleLogOut = (e) => {
         e.preventDefault();
+        dispatch(resetToken());
+        dispatch(resetProfile());
         localStorage.removeItem("token");
         navigate("/");
     };

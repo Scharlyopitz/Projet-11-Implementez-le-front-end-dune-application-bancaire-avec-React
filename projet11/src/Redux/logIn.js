@@ -11,6 +11,7 @@ export const loginUser = createAsyncThunk(
             "http://localhost:3001/api/v1/user/login",
             userInformations
         );
+
         const response = await request.data.body.token;
         accountService.saveToken(response);
         return response;
@@ -23,6 +24,11 @@ const userSLice = createSlice({
         loading: false,
         user: null,
         error: null,
+    },
+    reducers: {
+        resetToken: (state) => {
+            state.user = null;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -51,5 +57,7 @@ const userSLice = createSlice({
             });
     },
 });
+
+export const { resetToken } = userSLice.actions;
 
 export default userSLice.reducer;
