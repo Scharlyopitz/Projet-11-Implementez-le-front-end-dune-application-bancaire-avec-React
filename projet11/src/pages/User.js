@@ -9,6 +9,7 @@ import { accountService } from "../components/accounterService";
 
 import { useDispatch, useSelector } from "react-redux";
 import { getProfile } from "../Redux/UserInfo";
+import TitlePage from "../components/TitlePage";
 
 export default function User() {
     const dispatch = useDispatch();
@@ -50,6 +51,9 @@ export default function User() {
 
     return (
         <>
+            <TitlePage
+                title={`${userInformations?.firstname}" "${userInformations?.lastname}`}
+            />
             <main className="main bg-dark">
                 {edit ? (
                     <Edit handleEditOff={handleEditOff} />

@@ -1,10 +1,12 @@
 import chatIcon from "../assets/icon-chat.png";
 import moneyIcon from "../assets/icon-money.png";
 import securityIcon from "../assets/icon-security.png";
+import TitlePage from "../components/TitlePage";
 
 export default function Home() {
     return (
         <>
+            <TitlePage title={"Home"} />
             <main>
                 <div className="hero">
                     <section className="hero-content">
