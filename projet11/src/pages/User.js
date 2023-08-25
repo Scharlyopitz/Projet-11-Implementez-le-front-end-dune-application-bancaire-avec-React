@@ -52,7 +52,7 @@ export default function User() {
     return (
         <>
             <TitlePage
-                title={`${userInformations?.firstname}" "${userInformations?.lastname}`}
+                title={`${userInformations?.firstname} ${userInformations?.lastname}`}
             />
             <main className="main bg-dark">
                 {edit ? (
