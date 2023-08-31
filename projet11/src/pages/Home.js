@@ -2,6 +2,7 @@ import chatIcon from "../assets/icon-chat.png";
 import moneyIcon from "../assets/icon-money.png";
 import securityIcon from "../assets/icon-security.png";
 import TitlePage from "../components/TitlePage";
+import Card from "../components/Card";
 
 export default function Home() {
     return (
@@ -21,49 +22,30 @@ export default function Home() {
                 </div>
                 <section className="features">
                     <h2 className="sr-only">Features</h2>
-                    <div className="feature-item">
-                        <img
-                            src={chatIcon}
-                            alt="Chat Icon"
-                            className="feature-icon"
-                        />
-                        <h3 className="feature-item-title">
-                            You are our #1 priority
-                        </h3>
-                        <p>
-                            Need to talk to a representative? You can get in
-                            touch through our 24/7 chat or through a phone call
-                            in less than 5 minutes.
-                        </p>
-                    </div>
-                    <div className="feature-item">
-                        <img
-                            src={moneyIcon}
-                            alt="Chat Icon"
-                            className="feature-icon"
-                        />
-                        <h3 className="feature-item-title">
-                            More savings means higher rates
-                        </h3>
-                        <p>
-                            The more you save with us, the higher your interest
-                            rate will be!
-                        </p>
-                    </div>
-                    <div className="feature-item">
-                        <img
-                            src={securityIcon}
-                            alt="Chat Icon"
-                            className="feature-icon"
-                        />
-                        <h3 className="feature-item-title">
-                            Security you can trust
-                        </h3>
-                        <p>
-                            We use top of the line encryption to make sure your
-                            data and money is always safe.
-                        </p>
-                    </div>
+                    <Card
+                        icon={chatIcon}
+                        alt={"chatIcon"}
+                        texts={{
+                            text1: "You are our #1 priority",
+                            text2: "Need to talk to a representative? You can get in touch through our 24/7 chat or through a phone call in less than 5 minutes.",
+                        }}
+                    />
+                    <Card
+                        icon={moneyIcon}
+                        alt={"moneyIcon"}
+                        texts={{
+                            text1: "More savings means higher rates",
+                            text2: "The more you save with us, the higher your interest rate will be!",
+                        }}
+                    />
+                    <Card
+                        icon={securityIcon}
+                        alt={"securityIcon"}
+                        texts={{
+                            text1: "Security you can trust",
+                            text2: "We use top of the line encryption to make sure your data and money is always safe.",
+                        }}
+                    />
                 </section>
             </main>
         </>
